@@ -30,12 +30,12 @@
                   <input id="file" type="file" @change="onZipChange" style='width: 105px;'/>
                 </label>
               </b-card-text>
-              <b-card-text style="height: 380px;overflow-x: auto;">
+              <!-- <b-card-text style="height: 380px;overflow-x: auto;" >
                 <div v-for="item in responseAOE"  v-bind:key="item">
                     <P>{{ item.photo_name }}</P>
                     <b-table striped hover :items="item.data"></b-table>
                 </div>
-              </b-card-text>
+              </b-card-text> -->
           </b-card> 
         </b-col>
       </b-row>
@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: 'Main',
   data() {
@@ -92,6 +93,28 @@ export default {
   methods: {
     onFileChange(e) {
       const file = e.target.files[0];
+      var api = 'http://127.0.0.1:8000/api/'
+      // predict/predict/
+      let data = new FormData()
+
+      data.append('name', 'image')
+      data.append('file', event.target.files[0])
+
+      let config = {
+        header : {
+          'Content-Type' : 'multipart/form-data'
+        }
+      };  
+
+      axios.post(api+'predict/predict/', data, config).then(response => {
+        // eslint-disable-next-line no-console
+        console.log('response', response)
+      }).catch(error => {
+        // eslint-disable-next-line no-console
+        console.log('error', error)
+      })
+
+
       this.url = URL.createObjectURL(file);
     },
     onZipChange(e){
