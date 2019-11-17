@@ -12,6 +12,16 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
+from keras.models import load_model
+from keras.backend import set_session
+import tensorflow as tf
+
+sess = tf.Session()
+graph = tf.get_default_graph()
+model = load_model(os.path.join(os.getcwd(),"model_best_weights.h5"))
+# MODEL = modelR
+# GRAPH = tf.get_default_graph()
+# graph = tf.get_default_graph()
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -38,6 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
+    
 ]
 
 MIDDLEWARE = [
@@ -48,8 +60,29 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  
+    'django.middleware.common.CommonMiddleware',  
 ]
-
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:8080",
+]
+CORS_ORIGIN_REGEX_WHITELIST = [
+    r"^https://\w+\.example\.com$",
+]
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+    'Content-Type'
+]
 ROOT_URLCONF = 'back.urls'
 
 TEMPLATES = [
@@ -80,7 +113,14 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
+# CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ALLOW_CREDENTIALS = True
+# CORS_ORIGIN_WHITELIST = [
+#     "http://localhost:8080",
+# ]
+# CORS_ORIGIN_REGEX_WHITELIST = [
+#     r"^https://\w+\.example\.com$",
+# ]
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
