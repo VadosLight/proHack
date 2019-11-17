@@ -17,15 +17,21 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include, path
 from rest_framework import routers
-from polls import views
+from polls.views import CalculateViewset
+# from polls.Predictor import Predictor
+
 
 router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'groups', views.GroupViewSet)
+# router.register(r'users', views.UserViewSet)
+# router.register(r'groups', views.GroupViewSet)
+router.register(r'predict', CalculateViewset, basename='predict')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
-
+# loadModel()
+# def loadModel():
+#     global modelR
+#     modelR = load_model(os.path.join(os.getcwd(),"model_best_weights.h5"))
