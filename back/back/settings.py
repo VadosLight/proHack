@@ -12,13 +12,12 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
-from keras.models import load_model
-from keras.backend import set_session
+from tensorflow.python.keras.backend import set_session
+from tensorflow.python.keras.models import load_model
 import tensorflow as tf
 
-sess = tf.Session()
-graph = tf.get_default_graph()
-model = load_model(os.path.join(os.getcwd(),"model_best_weights.h5"))
+graph = tf.compat.v1.get_default_graph()
+
 # MODEL = modelR
 # GRAPH = tf.get_default_graph()
 # graph = tf.get_default_graph()
