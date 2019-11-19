@@ -1,7 +1,7 @@
 <template>    
     <b-container>
       <b-row>
-        <b-col md='4'>
+        <b-col md='5'>
           <b-card title="Определение дефекта">
             <b-card-text>
               <label for="file">Загрузить фото
@@ -16,7 +16,7 @@
             </b-card-text>
           </b-card>
         </b-col>
-        <b-col md='4'>
+        <b-col md='3'>
             <b-card title="Дообучение">
               <b-card-text>
                 <label for="file">Загрузить архив
@@ -25,7 +25,7 @@
               </b-card-text>
           </b-card>        
         </b-col>
-        <b-col md='4'>
+        <b-col md='3'>
             <b-card title="АОЕ определение дефекта" >
               <b-card-text>
                 <label for="file">Загрузить архив
@@ -53,9 +53,9 @@ export default {
       url: null,
       loader: false,
       response: [
-          {'name': 'Волосеные трещены', 'accuracy': 0.95},
-          {'name': 'Волосеные трещены', 'accuracy': 0.93},
-          {'name': 'Волосеные трещены', 'accuracy': 0.92}
+          // {'name': 'Волосеные трещены', 'accuracy': 0.95},
+          // {'name': 'Волосеные трещены', 'accuracy': 0.93},
+          // {'name': 'Волосеные трещены', 'accuracy': 0.92}
         ],
       responseAOE:[
         {
@@ -113,6 +113,7 @@ export default {
       axios.post(api+'predict/predict/', data, config).then(response => {
         // eslint-disable-next-line no-console
         console.log('response', response)
+        app.response = response.data
         app.loader = false;
       }).catch(error => {
         // eslint-disable-next-line no-console

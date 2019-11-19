@@ -16,8 +16,7 @@ from tensorflow.python.keras.backend import set_session
 from tensorflow.python.keras.models import load_model
 import tensorflow as tf
 
-graph = tf.compat.v1.get_default_graph()
-
+model = tf.keras.models.load_model("keras_restnet152_TF_06.h5")
 # MODEL = modelR
 # GRAPH = tf.get_default_graph()
 # graph = tf.get_default_graph()

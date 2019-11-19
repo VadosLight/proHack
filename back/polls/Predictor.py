@@ -11,7 +11,8 @@ from tensorflow.python.keras.backend import set_session
 import tensorflow
 from PIL import Image
 from tensorflow.python.keras.models import load_model
-from back.settings import  graph
+from back.settings import  model
+import tensorflow as tf
 import os
 import numpy as np
 import PIL
@@ -19,15 +20,14 @@ class Predictor:
     def __init__(self):
         pass
    
-    def predict():
-        tensorflow.keras.backend.clear_session()
+    def predict():   
         classes = ['Class0','Class1','Class10','Class11','Class12','Class2','Class3','Class4',
         'Class5','Class6','Class7','Class8',
         'Class9']
         target_names = ['Хороший класс', 'Волосяные трещины', 'Сломанный и раздавленный', "Тонкий слой",
           'Хвостики', 'Затертая поверхность', 'Значительное искажение',
           'Отверстия в шоколаде', 'Открытый центр', 'Плохая декорация', 'Плохое донышко','Повреждение упаковочной машины']
-        model = tensorflow.keras.models.load_model("keras_restnet152_TF_06.h5")
+        
         # with graph.as_default():          
         
             
